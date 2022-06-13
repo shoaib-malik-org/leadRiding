@@ -50,6 +50,9 @@ a {
 .text-lgrey{
   color: rgb(181, 181, 181);
 }
+.text-lgreen{
+  color: #37E2D5;
+}
 .btn:focus,.form-control:focus,.form-select:focus{
   box-shadow: none;
 }
@@ -79,4 +82,7 @@ a {
 }
 .z-10{
   z-index: 10;
+}
+.mt-10{
+  margin-top: 150px;
 }

@@ -1,3 +1,4 @@
+import { Cate } from "../../components/category/subCatery";
 import { Navbar } from "../../components/common/navbar";
 import style from '../../styles/category.module.css'
 
@@ -34,10 +35,10 @@ export default function Home() {
                         <select name="city" id="" className={`form-select me-3 rounded-0 ${style.borderNone} w-25`}>
                             {citys.map(value => <option name={value} key={value}>{value}</option>)}
                         </select>
-
                     </div>
                 </div>
             </div>
+            <Cate />
         </>
     )
 }
