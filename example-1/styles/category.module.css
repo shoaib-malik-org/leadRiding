@@ -1,0 +1,24 @@
+.bgTop {
+    background-image: url('../img/category/home/Home-repair-services.jpg');
+}
+
+.bgTop {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgTop::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.htMd {
+    height: 350px;
+}
+
+.borderNone {
+    border: none;
+}

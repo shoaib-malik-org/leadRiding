@@ -103,7 +103,7 @@ const cate = [
 export function FocusCate() {
     return (
         <div className="container">
-            <h1 className="text-center text-sans">Main Categories</h1>
+            <h1 className="text-center text-sans">Popular Categories</h1>
             <hr className="col-1 ms-auto me-auto bg-orange mt-4" />
             <div className="row mt-3 pt-5 text-sans">
                 {cate.map(Cols)}

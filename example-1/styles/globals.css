@@ -1,0 +1,82 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+.text-sans{
+  font-family: sans-serif;
+}
+.text-orange{
+  color: orange;
+}
+.text-blue{
+  color: #1b2f45;
+}
+.btn-orange,.btn-orange:hover{
+  background-color: orange;
+  color: white;
+}
+.btn-lgreen,.btn-lgreen:hover{
+  background-color: #37E2D5;
+  border: 1px solid #37E2D5;
+  color: white;
+}
+.btn-outline-orange{
+  border: orange 1px solid;
+  color: orange;
+}
+.bg-orange{
+  border: 1px solid orange !important;
+  opacity: 1;
+}
+.h-mdpx{
+  height: 500px;
+}
+.icon{
+  height: 20px;
+  width: 20px;
+}
+.text-lgrey{
+  color: rgb(181, 181, 181);
+}
+.btn:focus,.form-control:focus,.form-select:focus{
+  box-shadow: none;
+}
+.Top:hover h3{
+  color: orange;
+  transition: .3s;
+}
+.Top h3{
+  transition: .3s;
+}
+.btnnot:hover{
+  border: 1px solid white;
+  cursor: default;
+}
+.rounded-right{
+  border-radius: 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.rounded-left{
+  border-radius: 0px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.op-1{
+  opacity: 1;
+}
+.z-10{
+  z-index: 10;
+}

@@ -9,3 +9,7 @@
   background-repeat: none;
   background-size: cover;
 }
+
+.borderNone{
+  border: none;
+}
