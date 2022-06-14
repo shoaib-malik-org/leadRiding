@@ -26,13 +26,13 @@ export function Navbar() {
                 <div className="collapse navbar-collapse text-sans" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto ms-4 mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link text-dark me-3 rounded-5 border" aria-current="page" href="#">
+                            <a className="nav-link text-dark me-3 rounded-5 border hover-grey" aria-current="page" href="#">
                                 <i class="fa-brands fa-apple fa-xl me-2 ms-1"></i>
                                 App Store
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-dark me-5 border rounded-5" href="#">
+                            <a className="nav-link text-dark me-5 border rounded-5 hover-grey" href="#">
                                 <i class="fa-brands fa-google-play fa-lg me-2 ms-1"></i>
                                 Play Store
                             </a>
@@ -41,13 +41,27 @@ export function Navbar() {
                     </ul>
                 </div>
                 <div className='d-flex justify-content-end'>
-                    <a href="#" className='me-4 py-2 text-sans'>Sign in</a>
-                    <a href="#" className='me-4 py-2 text-sans'>Sign Up</a>
+                    <p href="#" className='me-4 py-2 text-sans mb-0 pointer'>Sign in</p>
+                    <p href="#" className='me-4 py-2 text-sans mb-0 pointer'>Sign Up</p>
                     <button className='btn btn-orange text-sans'>
                         List Your Business
                     </button>
                 </div>
             </div>
+            <SignIn />
         </nav>
+    )
+}
+
+function SignIn(){
+
+    return (
+        <div className='container bg-dark start-0 end-0 position-absolute' style={{top:"100px",zIndex:'1000000'}}>
+            <div className='row'>
+                <div className='col-6 ms-auto me-auto'>
+                    sfhsda
+                </div>
+            </div>
+        </div>
     )
 }

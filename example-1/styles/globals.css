@@ -40,6 +40,9 @@ a {
   border: 1px solid orange !important;
   opacity: 1;
 }
+.back-orange{
+  background-color: #FF9F45;
+}
 .h-mdpx{
   height: 500px;
 }
@@ -90,10 +93,19 @@ a {
 .mt-10{
   margin-top: 150px;
 }
-.overlay::before{
+.overlay::before,.overlay-lg::before{
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: 17px;
+  border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
+}
+.overlay-lg::before{
+  background-color: rgba(0, 0, 0,.7);
+}
+.hover-grey:hover{
+  background-color: rgb(213, 213, 213) !important;
+}
+.pointer{
+  cursor: pointer;
 }

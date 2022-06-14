@@ -1,9 +1,12 @@
 .bgTop {
     background-image: url('../img/category/home/home.png');
 }
+.bgAppTop{
+    background-image: url('../img/category/homeAppl/top.png');
+}
 
 .bgTop,
-.bgCate {
+.bgCate,.bgAppTop {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -11,13 +14,6 @@
 
 .bgCate {
     border-radius: 10px;
-}
-
-.bgTop::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .htLg {
@@ -30,16 +26,6 @@
 
 .bglBlue {
     background-color: #f4f9ff;
-}
-
-.cateHover:hover {
-    border-radius: 10px;
-    box-shadow: 0 0.5rem 5rem rgba(0, 0, 0, 0.15) !important;
-    transition: .3s;
-}
-
-.cateHover {
-    transition: .3s;
 }
 
 .textIcon {
