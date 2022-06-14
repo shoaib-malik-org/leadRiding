@@ -1,42 +1,52 @@
 .bgTop {
-    background-image: url('../img/category/home/Home-repair-services.jpg');
+    background-image: url('../img/category/home/home.png');
 }
 
-.bgTop {
+.bgTop,
+.bgCate {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bgCate {
+    border-radius: 10px;
 }
 
 .bgTop::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
-.htMd {
-    height: 350px;
+.htLg {
+    height: 450px;
 }
 
 .borderNone {
     border: none;
 }
-.bglBlue{
+
+.bglBlue {
     background-color: #f4f9ff;
 }
-.cateHover:hover{
+
+.cateHover:hover {
     border-radius: 10px;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 0.5rem 5rem rgba(0, 0, 0, 0.15) !important;
     transition: .3s;
 }
-.cateHover{
+
+.cateHover {
     transition: .3s;
 }
-.textIcon{
+
+.textIcon {
     color: #27a99e;
 }
-.manage{
+
+.manage {
     height: 450px;
     width: 85vw;
     top: 200px;
