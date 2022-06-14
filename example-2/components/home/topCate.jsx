@@ -1,5 +1,6 @@
 
 import Image from 'next/image'
+import Link from 'next/link'
 import homeApp from '../../img/icons/homeApp.png'
 import home from '../../img/icons/icons8-home-50.png'
 import pestControl from '../../img/icons/icons8-pest-control-64.png'
@@ -61,22 +62,28 @@ export function TopCate() {
 
 function Cols(value) {
     return (
-        <div className="col-4 border py-2 rounded-2 Top mb-3" key={value.title}>
-            <div className="row">
-                <div className="col-3 mt-3">
-                    <Image
-                        src={value.icon}
-                        height={'55px'}
-                        width={'55px'}
-                    />
-                </div>
-                <div className="col ps-0">
-                    <h3 className="text-sans text-uppercase">{value.title}</h3>
-                    <p>
-                        {value.p}
-                    </p>
-                </div>
-            </div>
+        <div className="col-4 px-4 py-2 rounded-2 Top mb-3" key={value.title}>
+            <Link href={"/category/"+value.title}>
+                <a>
+                    <div className='col-12'>
+                        <div className="row">
+                            <div className="col-3 mt-3">
+                                <Image
+                                    src={value.icon}
+                                    height={'55px'}
+                                    width={'55px'}
+                                />
+                            </div>
+                            <div className="col ps-0">
+                                <h3 className="text-sans text-uppercase h4 text-blue">{value.title}</h3>
+                                <p className='text-muted'>
+                                    {value.p}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </Link>
         </div>
     )
 }

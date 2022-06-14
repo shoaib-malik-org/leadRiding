@@ -20,8 +20,16 @@ a {
 .text-orange{
   color: orange;
 }
-.btn-orange{
+.text-blue{
+  color: #1b2f45;
+}
+.btn-orange,.btn-orange:hover{
   background-color: orange;
+  color: white;
+}
+.btn-lgreen,.btn-lgreen:hover{
+  background-color: #37E2D5;
+  border: 1px solid #37E2D5;
   color: white;
 }
 .btn-outline-orange{
@@ -31,6 +39,9 @@ a {
 .bg-orange{
   border: 1px solid orange !important;
   opacity: 1;
+}
+.back-orange{
+  background-color: #FF9F45;
 }
 .h-mdpx{
   height: 500px;
@@ -42,9 +53,15 @@ a {
 .text-lgrey{
   color: rgb(181, 181, 181);
 }
+.text-white{
+  color: white !important;
+  z-index: 100000;
+}
+.text-lgreen{
+  color: #37E2D5;
+}
 .btn:focus,.form-control:focus,.form-select:focus{
   box-shadow: none;
-  border: 1px solid orange;
 }
 .Top:hover h3{
   color: orange;
@@ -52,4 +69,54 @@ a {
 }
 .Top h3{
   transition: .3s;
+}
+.btnnot:hover{
+  border: 1px solid white;
+  cursor: default;
+}
+.rounded-right{
+  border-radius: 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.rounded-left{
+  border-radius: 0px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.op-1{
+  opacity: 1;
+}
+.z-10{
+  z-index: 10;
+}
+.mt-10{
+  margin-top: 150px;
+}
+.overlay::before,.overlay-lg::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.overlay-lg::before{
+  background-color: rgba(0, 0, 0,.7);
+}
+.hover-grey:hover{
+  background-color: rgb(213, 213, 213) !important;
+}
+.pointer{
+  cursor: pointer;
+}
+.not-btn{
+  background: none;
+  border: none;
+  color: rgb(104, 104, 104);
+}
+.not-btn:hover{
+  color: rgb(192, 86, 0);
+}
+.text-sm{
+  font-size: 15px;
 }

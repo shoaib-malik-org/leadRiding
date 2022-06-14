@@ -109,3 +109,14 @@ a {
 .pointer{
   cursor: pointer;
 }
+.not-btn{
+  background: none;
+  border: none;
+  color: rgb(104, 104, 104);
+}
+.not-btn:hover{
+  color: rgb(192, 86, 0);
+}
+.text-sm{
+  font-size: 15px;
+}

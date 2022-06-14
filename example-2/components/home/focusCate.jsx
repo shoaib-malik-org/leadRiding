@@ -112,9 +112,11 @@ export function FocusCate() {
     )
 }
 
+var i=0;
+
 function Cols(value) {
     return (
-        <div className='col-2 mt-5 Top' key={value.title}>
+        <div className='col-2 mt-5 Top' key={i++}>
             <div className='d-flex justify-content-center'>
                 <Image
                     src={value.icon}

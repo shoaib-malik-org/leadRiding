@@ -56,12 +56,6 @@ export function Navbar() {
 function SignIn(){
 
     return (
-        <div className='container bg-dark start-0 end-0 position-absolute' style={{top:"100px",zIndex:'1000000'}}>
-            <div className='row'>
-                <div className='col-6 ms-auto me-auto'>
-                    sfhsda
-                </div>
-            </div>
-        </div>
+        <></>
     )
 }

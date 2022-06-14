@@ -1,0 +1,17 @@
+.icon{
+    position: relative;
+    top: -3px;
+}
+.btnDash,.btnDash:hover{
+    background-color: #e1efff;
+    color: #0053b1;
+}
+.dashboard .btn:hover{
+    border: none !important;
+}
+.textBlue{
+    color: #012970;;
+}
+.bglBlue{
+    background-color: #f4f9ff;
+}
