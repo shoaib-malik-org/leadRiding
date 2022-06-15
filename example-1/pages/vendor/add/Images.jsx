@@ -1,5 +1,6 @@
+import { VendorNav } from "../../../components/vendor/vendorNav"
 import { Navbar } from "../../../components/common/navbar"
-import { DetailSider } from "../../../components/vendor/detailSide"
+
 
 
 
@@ -9,12 +10,11 @@ export default function Images() {
         <>
             <Navbar />
             <div className="container">
+                <VendorNav className={['', '', '', 'profileActive']} />
                 <div className="row">
-                    <div className="col-2">
-                        <DetailSider className={['', 'profileActive', '', '']} />
-                    </div>
+
                     <div className="col">
-                        <AddProfile />
+                        {/* <AddProfile /> */}
                     </div>
                 </div>
             </div>

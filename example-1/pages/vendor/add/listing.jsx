@@ -1,6 +1,7 @@
 import { Navbar } from "../../../components/common/navbar"
-import { DetailSider } from "../../../components/vendor/detailSide"
+
 import Link from "next/link"
+import { VendorNav } from "../../../components/vendor/vendorNav"
 
 
 
@@ -13,10 +14,9 @@ export default function Listing() {
         <>
             <Navbar />
             <div className="container">
+                <VendorNav className={['', 'profileActive', '', '']} />
                 <div className="row">
-                    <div className="col-2">
-                        <DetailSider className={['', 'profileActive', '', '']} />
-                    </div>
+
                     <div className="col">
                         <AddProfile />
                     </div>

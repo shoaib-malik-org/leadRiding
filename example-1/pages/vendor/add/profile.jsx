@@ -1,8 +1,9 @@
-import { DetailSider } from "../../../components/vendor/detailSide";
+
 import { Navbar } from '../../../components/common/navbar'
 import Image from "next/image";
 import profile from '../../../img/vendor/profile.png'
 import Link from "next/link";
+import { VendorNav } from '../../../components/vendor/vendorNav';
 
 
 
@@ -14,10 +15,8 @@ export default function Profile() {
         <>
             <Navbar />
             <div className="container">
+                <VendorNav className={['profileActive', '', '', '']} />
                 <div className="row">
-                    <div className="col-2">
-                        <DetailSider className={['profileActive', '', '', '']} />
-                    </div>
                     <div className="col">
                         <AddProfile />
                     </div>
@@ -64,6 +63,14 @@ function AddProfile() {
                                 <input name="name" type="text" className="form-control text-sans" id="floatingInput" placeholder="body" />
                                 <label htmlFor="floatingInput">Pincode:</label>
                             </div>
+                            <div className="form-floating mt-2">
+                                <input name="name" type="text" className="form-control text-sans" id="floatingInput" placeholder="body" />
+                                <label htmlFor="floatingInput">Facebook page link:</label>
+                            </div>
+                            <div className="form-floating mt-2">
+                                <input name="name" type="text" className="form-control text-sans" id="floatingInput" placeholder="body" />
+                                <label htmlFor="floatingInput">Pinterest page link:</label>
+                            </div>
                         </div>
                         <div className="col">
                             <div className="form-floating mt-2">
@@ -77,6 +84,14 @@ function AddProfile() {
                             <div className="form-floating mt-2">
                                 <input name="name" type="text" className="form-control text-sans" id="floatingInput" placeholder="body" />
                                 <label htmlFor="floatingInput">State:</label>
+                            </div>
+                            <div className="form-floating mt-2">
+                                <input name="name" type="text" className="form-control text-sans" id="floatingInput" placeholder="body" />
+                                <label htmlFor="floatingInput">Intagram page link:</label>
+                            </div>
+                            <div className="form-floating mt-2">
+                                <input name="name" type="text" className="form-control text-sans" id="floatingInput" placeholder="body" />
+                                <label htmlFor="floatingInput">Twitter page link:</label>
                             </div>
                             <Link href={"/vendor/add/listing"}>
                                 <a>

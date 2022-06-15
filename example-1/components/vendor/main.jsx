@@ -5,6 +5,7 @@ import first from '../../img/vendor/first.jpg'
 import sec from '../../img/vendor/sec.webp'
 import third from '../../img/vendor/third.jpg'
 import four from '../../img/vendor/four.jpg'
+import { useState } from 'react'
 
 const arr = [
     first.src,
@@ -16,6 +17,7 @@ const arr = [
 
 
 export function Main() {
+    var [show, setShow] = useState(false)
     return (
         <div className="container">
             <div className="row">
@@ -41,14 +43,38 @@ export function Main() {
             </button>
             <div className='container'>
                 <div className='row'>
-                    <div className={`col ${style.bgGrey} p-3 border rounded-3`}>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-                        <p>
-                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-                        </p>
-                    </div>
+                    {
+                        (show) ?
+                            <Desc />
+                            :
+                            <Reviews />
+
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}
+
+function Reviews() {
+    return (
+        <div className={`container `}>
+            <div className={`row p-3 ${style.bgGrey} rounded-3`}>
+                <div className='col-6'>
+                    <p>
+                        4.8 stars - 921 reviews &#11088;&#11088;&#11088;&#11088;
+                    </p>
+                    <p>
+                        1081 completed tasks &#11088;&#11088;&#11088;
+                    </p>
+                </div>
+                <div className='col-6'>
+                    <p>
+                        Quality &#11088;&#11088;&#11088;&#11088;
+                    </p>
+                    <p>
+                        Cost &#11088;&#11088;&#11088;
+                    </p>
                 </div>
             </div>
         </div>
@@ -67,6 +93,19 @@ function Cols(value, index) {
                     className={`rounded-3 ${cls}`}
                 />
             </div>
+        </div>
+    )
+}
+
+function Desc() {
+    return (
+        <div className={`col ${style.bgGrey} p-3 border rounded-3`}>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+            <p>
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+            </p>
         </div>
     )
 }

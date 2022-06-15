@@ -1,5 +1,5 @@
 import { Navbar } from "../../../components/common/navbar"
-import { DetailSider } from "../../../components/vendor/detailSide"
+import { VendorNav } from "../../../components/vendor/vendorNav"
 
 
 const Benefit = [
@@ -133,10 +133,9 @@ export default function Leads() {
         <>
             <Navbar />
             <div className="container">
+                <VendorNav className={['', '', 'profileActive', '']} />
                 <div className="row">
-                    <div className="col-2">
-                        <DetailSider className={['', '', 'profileActive', '']} />
-                    </div>
+
                     <div className="col">
                         <Plan />
                     </div>
@@ -150,37 +149,29 @@ function Plan() {
     return (
         <div className="container mb-5">
             <div className="row mt-5 text-sans">
-                <div className="col-5">
+                <div className="col-5 pe-0">
                     <h3>Features</h3>
                     {Benefit.map(About)}
                 </div>
-                <div className="col">
+                <div className="col px-0">
                     <h3 className="text-center">Free</h3>
                     {free.map(Same)}
-                    <button className="btn btn-orange w-100 rounded-1">
-                        Free
-                    </button>
+                    
                 </div>
-                <div className="col">
+                <div className="col px-0">
                     <h3 className="text-center">Silver</h3>
                     {silver.map(Same)}
-                    <button className="btn btn-orange w-100 rounded-1">
-                        Silver
-                    </button>
+                    
                 </div>
-                <div className="col">
+                <div className="col px-0">
                     <h3 className="text-center">Gold</h3>
                     {gold.map(Same)}
-                    <button className="btn btn-orange w-100 rounded-1">
-                        Gold
-                    </button>
+                    
                 </div>
-                <div className="col">
+                <div className="col ps-0">
                     <h3 className="text-center">Diamond</h3>
                     {diamond.map(Same)}
-                    <button className="btn btn-orange w-100 rounded-1">
-                        Diamond
-                    </button>
+                    
                 </div>
             </div>
         </div>
