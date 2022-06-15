@@ -14,104 +14,154 @@ a {
 * {
   box-sizing: border-box;
 }
-.text-sans{
+
+.text-sans {
   font-family: sans-serif;
 }
-.text-orange{
+
+.text-orange {
   color: orange;
 }
-.text-blue{
+
+.text-blue {
   color: #1b2f45;
 }
-.btn-orange,.btn-orange:hover{
+
+.btn-orange,
+.btn-orange:hover {
   background-color: orange;
   color: white;
 }
-.btn-lgreen,.btn-lgreen:hover{
+
+.btn-lgreen,
+.btn-lgreen:hover {
   background-color: #37E2D5;
   border: 1px solid #37E2D5;
   color: white;
 }
-.btn-outline-orange{
+
+.btn-outline-orange {
   border: orange 1px solid;
   color: orange;
 }
-.bg-orange{
+
+.bg-orange {
   border: 1px solid orange !important;
   opacity: 1;
 }
-.back-orange{
+
+.back-orange {
   background-color: #FF9F45;
 }
-.h-mdpx{
+
+.h-mdpx {
   height: 500px;
 }
-.icon{
+
+.icon {
   height: 20px;
   width: 20px;
 }
-.text-lgrey{
+
+.text-lgrey {
   color: rgb(181, 181, 181);
 }
-.text-white{
+
+.text-white {
   color: white !important;
   z-index: 100000;
 }
-.text-lgreen{
+
+.text-lgreen {
   color: #37E2D5;
 }
-.btn:focus,.form-control:focus,.form-select:focus{
+
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
   box-shadow: none;
 }
-.Top:hover h3{
+
+.Top:hover h3 {
   color: orange;
   transition: .3s;
 }
-.Top h3{
+
+.Top h3 {
   transition: .3s;
 }
-.btnnot:hover{
+
+.btnnot:hover {
   border: 1px solid white;
   cursor: default;
 }
-.rounded-right{
+
+.rounded-right {
   border-radius: 0px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-.rounded-left{
+
+.rounded-left {
   border-radius: 0px;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-.op-1{
+
+.op-1 {
   opacity: 1;
 }
-.z-10{
+
+.z-10 {
   z-index: 10;
 }
-.mt-10{
+
+.mt-10 {
   margin-top: 150px;
 }
-.overlay::before,.overlay-lg::before{
+
+.overlay::before,
+.overlay-lg::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.overlay-lg::before{
-  background-color: rgba(0, 0, 0,.7);
+
+.overlay-lg::before {
+  background-color: rgba(0, 0, 0, .7);
 }
-.hover-grey:hover{
+
+.hover-grey:hover {
   background-color: rgb(213, 213, 213) !important;
 }
-.pointer{
+
+.pointer {
   cursor: pointer;
 }
-.bg-none{
+
+.bg-none {
   background: none;
 }
-.mh-200{
+
+.mh-200 {
   min-height: 235px !important;
+}
+
+.not-btn {
+  background: none;
+  border: none;
+  color: rgb(59, 59, 59);
+}
+.not-btn:hover{
+  color: rgb(255, 115, 0);
+}
+.text-sm{
+  font-size: 14px;
+}
+.profileActive{
+  background-color: #f4f9ff;
+  color: rgb(31, 31, 31) !important;
+  border-bottom: 1px solid #6eafff97;
 }

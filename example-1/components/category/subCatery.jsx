@@ -10,6 +10,7 @@ import MassageService from '../../img/category/home/massage-transformed.jpeg'
 import Image from 'next/image'
 import style from '../../styles/category.module.css'
 import Link from 'next/link'
+import { Sider } from '../common/sider'
 
 
 const subCate = [
@@ -48,7 +49,14 @@ export function Cate() {
                             Explore by category
                         </h1>
                         <div className='row mt-5'>
-                            {subCate.map(Cols)}
+                            <div className='col-3'>
+                                <Sider />
+                            </div>
+                            <div className='col px-0'>
+                                <div className='row'>
+                                    {subCate.map(Cols)}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -63,7 +71,7 @@ function Cols(value) {
             <Link href={'#'}>
                 <a>
                     <div className={`col-12 rounded-3 ${style.bgCate} py-4  bg-white position-relative`} style={{ height: "200px", backgroundImage: `url(${value.src})` }}>
-                        <div className='z-10 overlay-lg position-absolute p-2 d-inline-block' style={{top:"140px",left:"10px"}}>
+                        <div className='z-10 overlay-lg position-absolute p-2 d-inline-block' style={{ top: "140px", left: "10px" }}>
                             <h4 className='text-white position-relative mb-0 text-sans'>
                                 {value.title}
                             </h4>
