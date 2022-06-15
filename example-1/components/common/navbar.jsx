@@ -27,13 +27,13 @@ export function Navbar() {
                     <ul className="navbar-nav me-auto ms-4 mb-2 mb-lg-0">
                         <li className="nav-item">
                             <a className="nav-link text-dark me-3 rounded-5 border hover-grey" aria-current="page" href="#">
-                                <i class="fa-brands fa-apple fa-xl me-2 ms-1"></i>
+                                <i className="fa-brands fa-apple fa-xl me-2 ms-1"></i>
                                 App Store
                             </a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link text-dark me-5 border rounded-5 hover-grey" href="#">
-                                <i class="fa-brands fa-google-play fa-lg me-2 ms-1"></i>
+                                <i className="fa-brands fa-google-play fa-lg me-2 ms-1"></i>
                                 Play Store
                             </a>
                         </li>

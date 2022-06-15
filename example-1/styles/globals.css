@@ -109,14 +109,9 @@ a {
 .pointer{
   cursor: pointer;
 }
-.not-btn{
+.bg-none{
   background: none;
-  border: none;
-  color: rgb(104, 104, 104);
 }
-.not-btn:hover{
-  color: rgb(192, 86, 0);
-}
-.text-sm{
-  font-size: 15px;
+.mh-200{
+  min-height: 235px !important;
 }

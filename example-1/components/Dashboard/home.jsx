@@ -74,7 +74,7 @@ function Customers() {
                 <span className='ms-2 h5 text-sans text-secondary'>Today</span>
                 <div className='row mt-4'>
                     <div className='col-3'>
-                        <i class="fa-solid fa-user-group fa-3x"></i>
+                        <i className="fa-solid fa-user-group fa-3x"></i>
                     </div>
                     <div className='col'>
                         <h2 className={`${style.textBlue} text-sans`}>3,264</h2>
@@ -94,7 +94,7 @@ function Vendors() {
                 <span className='ms-2 h5 text-sans text-secondary'>Today</span>
                 <div className='row mt-4'>
                     <div className='col-3'>
-                        <i class="fa-solid fa-user-check fa-3x"></i>
+                        <i className="fa-solid fa-user-check fa-3x"></i>
                     </div>
                     <div className='col'>
                         <h2 className={`${style.textBlue} text-sans`}>940</h2>
