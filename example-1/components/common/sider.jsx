@@ -173,7 +173,7 @@ export function Sider() {
             <h6 className="text-sans fw-bold">
                 CATEGORIES
             </h6>
-            <div className="row bg-light rounded-3 border">
+            <div className="row bg-light py-3 rounded-3 border">
                 {cate.map(Cols)}
             </div>
         </div >
