@@ -2,9 +2,11 @@ const user = [
     {
         id: '',
         name: '',
-        // the date he get vendor
-        date: '',
-        // do we have to store his address or get whenever he ask for vendor
-        address: ''
-    }
+        // the date he/she came to our site
+        date: ["13/10/2021"],
+        
+        phoneNo:"",
+        location:""
+    },
+
 ]

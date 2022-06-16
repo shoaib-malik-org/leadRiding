@@ -4,6 +4,10 @@ const adsHist = [
         vendor_id: '',
         price: '',
         duration: "",
-        date: ""
+        date: "",
+        profileLink:"",
+        img:"",
+        adText:"",
+        adTitle:"",
     }
 ]

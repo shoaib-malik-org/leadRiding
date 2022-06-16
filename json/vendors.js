@@ -1,6 +1,9 @@
 const vendors = [
     {
         id: '',
+        lead_id:[
+
+        ],
         name: '',
         email: '',
         phone: "",
@@ -9,14 +12,16 @@ const vendors = [
         state: '',
         pincode: "",
         // if we make seperate collection we still have to update it
-        leadLeft: '',
+        leadLeft: 9,
         // the date when vendor add himself in our site or app
         addDate: "",
-        isAuthenticated: true,
-        img: {
+        isVerified: false,
+        plan:"",
+        referralID:'',
+        imgs: {
             profile: 'http://localhost:8000/vendor/img' + imgName,
             other: [
-                'http://localhost:8000/vendor/img' + imgName,
+                'http://localhost:8000/vendor/img' + id+imgName,
                 'http://localhost:8000/vendor/img' + imgName,
                 'http://localhost:8000/vendor/img' + imgName,
                 'http://localhost:8000/vendor/img' + imgName,
@@ -28,16 +33,28 @@ const vendors = [
             ]
         },
         adhaar: {
-            no: '',
-            src: 'http://localhost:8000/vendor/img/' + imgName
+            id: '',
+            src: 'http://localhost:8000/vendor/doc/' + imgName
         },
         pan: {
-            no: '',
+            id: '',
             src: 'http://localhost:8000/vendor/img/' + imgName
         },
         gst: {
-            no: '',
-            src: 'http://localhost:8000/vendor/img/' + imgName
+            id: '',
+            // src: 'http://localhost:8000/vendor/img/' + imgName
         }
+    }
+]
+
+const vendors_list=[
+    {
+        id:1,
+        categories:[],
+        subcategories:[],
+        serviceCity:["Delhi"],
+        // GPS location points
+        currentLocation:"fgnfg"
+
     }
 ]

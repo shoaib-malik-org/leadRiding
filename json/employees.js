@@ -5,12 +5,14 @@ const employee = [
         type: 'bdm',
         vendorsGet: 5,
         date: '',
-        vendorsName: [
+        vendorsId: [
             '',
             '',
             '',
             '',
-        ],
-        price: 4000
+        ]
+
+
+        
     }
 ]
