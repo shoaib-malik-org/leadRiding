@@ -1,10 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Navbar } from '../components/common/navbar'
-import { FocusCate } from '../components/home/focusCate'
-import { Pricing } from '../components/home/pricing'
-import { Top } from '../components/home/top'
-import { TopCate } from '../components/home/topCate'
+
 
 
 export default function Home() {
@@ -16,10 +12,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <Top />
-      <TopCate />
-      <FocusCate />
-      <Pricing />
     </>
   )
 }
