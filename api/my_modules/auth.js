@@ -1,24 +1,26 @@
+
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const ObjectID = require('mongodb').ObjectId;
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const MongoStore = require('connect-mongo');
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const { MongdoClient, MongoClient } = require('mongodb');
 const fetch = require('node-fetch')
-var cookieParser = require('cookie-parser')
+
+
 const Router = express.Router();
 const cors = require('cors');
-Router.use(cookieParser())
-
 Router.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
 }));
 
-
 Router.use(express.urlencoded({ extended: true }));
 
+
+const MongoStore = require('connect-mongo');
 const LocalStrategy = require('passport-local').Strategy;
 const hour = 63070000000
 const date = new Date(Date.now() + hour)
@@ -28,7 +30,7 @@ Router.use(session({
     saveUninitialized: false,
     resave: false,
     store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://leadriding:Royal12@cluster0.zr8oeac.mongodb.net/?retryWrites=true&w=majority',
+        mongoUrl: 'mongodb+srv://leadriding:Royal12@cluster0.zr8oeac.mongodb.net/Login_Blog_Session?retryWrites=true&w=majority',
         collection: 'session'
     }),
     // cookie: { maxAge: date }
@@ -54,6 +56,7 @@ async function validPassword(password, passwordHash) {
 passport.use(new LocalStrategy((username, password, callback) => {
     console.log(username, password)
     dbo.collection('vendors').findOne({ username: username }, async (err, result) => {
+        console.log(result)
         if (err) { throw err };
         if (result) {
             const isvalid = validPassword(password, result.hash);
@@ -85,7 +88,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((userId, done) => {
     userId = new ObjectID(userId._id);
-    dbo.collection('users').findOne({ '_id': userId }, (err, result) => {
+    dbo.collection('vendors').findOne({ '_id': userId }, (err, result) => {
         if (err) throw err;
         if (result) {
             done(null, result);
@@ -103,24 +106,24 @@ Router.get("/login", (req, res) => {
 
 
 
-Router.post('/login', passport.authenticate("local", { failureRedirect: '/login', successRedirect: '/Auth' }));
+Router.post('/login', passport.authenticate("local", { failureRedirect: '/auth/login', successRedirect: '/auth/Auth' }));
 
-Router.post('/auth/local', (req, res) => {
+Router.post('/register', (req, res) => {
     req.on('data', (body) => {
         body = JSON.parse(body)
         bcrypt.hash(body.password, 10, async (err, hash) => {
             const user = {
                 username: body.username,
-                hash
+                hash: hash
             }
-            dbo.collection('users').insertOne(user, async (err, result) => {
+            dbo.collection('vendors').insertOne(user, async (err, result) => {
                 if (err) res.send(JSON.stringify('register unsuccessful'))
                 else res.send(JSON.stringify('register successful'))
+
             })
         })
     })
 })
-
 
 
 Router.get('/logout', (req, res) => {
@@ -128,22 +131,17 @@ Router.get('/logout', (req, res) => {
     res.redirect('http://localhost:3000')
 })
 
+
 Router.get('/Auth', (req, res) => {
-    res.redirect('http://localhost:3000/Auth')
+    res.redirect('http://localhost:3000/auth')
 })
 
-Router.get('/check',  (req, res) => {
-    console.log(req)
-
+Router.get('/check', (req, res) => {
     res.send(JSON.stringify(req.isAuthenticated()));
 })
 
-function getCookie(req,res,next){
-    req.on('date',(body))
-}
-
 Router.get('/', (req, res) => {
-    res.send('i have nothing in root but there will be')
+    res.send('i have nothing in root because but there will be')
 })
 
 

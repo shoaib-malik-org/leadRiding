@@ -15,10 +15,6 @@ const arr = [
     { name: 'pincode', type: 'number', show: 'Pincode' },
     { name: 'address', type: 'text', show: 'Address' },
     { name: 'state', type: 'text', show: 'State' },
-    { name: 'facebookLink', type: 'text', show: 'Facebook page link' },
-    { name: 'InstagramLink', type: 'text', show: 'Instagram page link' },
-    { name: 'TwitterLink', type: 'text', show: 'Twitter page link' },
-    { name: 'PinterestLink', type: 'text', show: 'Pinterest page link' },
     { name: "adhaarNo", type: 'text', show: 'Adhaar Number' },
     { name: "adhaarPhoto", type: 'file', show: 'Adhaar Photo' },
     { name: "panNo", type: 'text', show: 'Pan Number' },
@@ -160,6 +156,11 @@ export function SignUp({ func, show }) {
     }
     return (
         <>
+            <form action="http://localhost:8000/auth/login" method="post">
+                <input type="text" name="username" />
+                <input type="text" name="password" />
+                <input type="submit" />
+            </form>
             {
                 (next) ?
                     <SecondPage func={func} />
@@ -251,10 +252,10 @@ function FirstPage({ func, show, Pricing }) {
     }
     async function submit(e) {
         e.preventDefault();
-        // const p = await fetch('http://localhost:8000/auth/auth/local', { method: 'post', body: JSON.stringify(data) })
-        // const res = await p.json();
-        // console.log(res)
-        Pricing(true)
+        const p = await fetch('http://localhost:8000/auth/register', { method: 'post', body: JSON.stringify(data) })
+        const res = await p.json();
+        console.log(res)
+        // Pricing(true)
     }
     if (!show) return <></>
     return (
