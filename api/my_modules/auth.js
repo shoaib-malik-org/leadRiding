@@ -1,16 +1,21 @@
-
 const express = require('express');
+const Router = express.Router();
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const ObjectID = require('mongodb').ObjectId;
-const GoogleStrategy = require('passport-google-oauth2').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
 const { MongdoClient, MongoClient } = require('mongodb');
-const fetch = require('node-fetch')
+const dotenv = require('dotenv')
+dotenv.config()
+const nodemailer = require('nodemailer')
+const mongodb = require('./mongodb')
+const fileUpload = require("express-fileupload");
+Router.use(fileUpload({
+    createParentPath: true
+}));
 
 
-const Router = express.Router();
+
 const cors = require('cors');
 Router.use(cors({
     origin: 'http://localhost:3000',
@@ -36,7 +41,7 @@ Router.use(session({
     // cookie: { maxAge: date }
 }))
 var dbo;
-const dbName = 'Login_Blog'
+const dbName = 'LeadRiding'
 const url = 'mongodb+srv://leadriding:Royal12@cluster0.zr8oeac.mongodb.net/?retryWrites=true&w=majority'
 MongoClient.connect(url, function (err, db) {
     dbo = db.db(dbName);
@@ -55,7 +60,7 @@ async function validPassword(password, passwordHash) {
 
 passport.use(new LocalStrategy((username, password, callback) => {
     console.log(username, password)
-    dbo.collection('vendors').findOne({ username: username }, async (err, result) => {
+    dbo.collection('vendors_login').findOne({ username: username }, async (err, result) => {
         console.log(result)
         if (err) { throw err };
         if (result) {
@@ -88,7 +93,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((userId, done) => {
     userId = new ObjectID(userId._id);
-    dbo.collection('vendors').findOne({ '_id': userId }, (err, result) => {
+    dbo.collection('vendors_login').findOne({ '_id': userId }, (err, result) => {
         if (err) throw err;
         if (result) {
             done(null, result);
@@ -116,12 +121,12 @@ Router.post('/register', (req, res) => {
                 username: body.username,
                 hash: hash
             }
-            dbo.collection('vendors').insertOne(user, async (err, result) => {
+            dbo.collection('vendors_login').insertOne(user, async (err, result) => {
                 if (err) res.send(JSON.stringify('register unsuccessful'))
                 else res.send(JSON.stringify('register successful'))
-
             })
         })
+        mongodb.insert('vendors', body)
     })
 })
 
@@ -133,17 +138,80 @@ Router.get('/logout', (req, res) => {
 
 
 Router.get('/Auth', (req, res) => {
-    res.redirect('http://localhost:3000/auth')
+    res.redirect('http://localhost:3000/test/auth')
 })
-
+// sending that is vendor authenticated or not
 Router.get('/check', (req, res) => {
     res.send(JSON.stringify(req.isAuthenticated()));
 })
 
-Router.get('/', (req, res) => {
-    res.send('i have nothing in root because but there will be')
+// sending and opt to the vendor that forgot his password
+var tempOtp = 'expired';
+const transport = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.GMAIL_ACC,
+        pass: process.env.GMAIL_PASS
+    }
+})
+Router.post('/forget', (req, res) => {
+    req.on("data", async (body) => {
+        body = JSON.parse(body)
+        const p = await mongodb.find('vendors', body)
+        if (!(p.length > 0)) {
+            res.send(JSON.stringify(false))
+        } else {
+            tempOtp = getRandomInt(999999)
+            // var send = {
+            //     from: process.env.GMAIL_ACC,
+            //     to: p[0].email,
+            //     subject: "Lead Riding Verification Code",
+            //     text: "Your opt is " + tempOtp,
+            // }
+            // transport.sendMail(send, (err, info) => {
+            //     if (err) console.log(err)
+            //     else console.log(info)
+            // })
+            res.send(JSON.stringify(true))
+            otp();
+        }
+    })
+
+})
+// destroying the otp generated
+function otp() {
+    console.log(tempOtp)
+    setTimeout(() => {
+        tempOtp = 'expired'
+        console.log(tempOtp)
+    }, 360000);
+}
+// changing the password
+Router.post('/optVerification', (req, res) => {
+    req.on('data', (body) => {
+        body = JSON.parse(body);
+        const otp = body.otp
+        console.log(otp)
+        if (tempOtp === 'expired') {
+            res.send(JSON.stringify('expired'))
+        } else if (otp === tempOtp) {
+            res.send(JSON.stringify(true))
+        } else {
+            res.send(JSON.stringify(false))
+        }
+    })
+})
+Router.post('/password/change', (req, res) => {
+
 })
 
+Router.get('/', async (req, res) => {
+    res.send(JSON.stringify('i have nothing in auth'))
+})
 
+// for generating random opt
+function getRandomInt() {
+    return Math.floor(100000+Math.random() * 900000);
+}
 
 module.exports = Router

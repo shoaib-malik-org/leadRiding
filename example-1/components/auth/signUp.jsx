@@ -9,7 +9,7 @@ import randomId from 'random-id'
 const arr = [
     { name: 'username', type: 'text', show: 'Username' },
     { name: 'password', type: 'text', show: 'Password' },
-    { name: 'email', type: 'text', show: 'Email' },
+    { name: 'email', type: 'email', show: 'Email' },
     { name: 'number', type: 'number', show: 'Phone' },
     { name: 'city', type: 'text', show: 'City' },
     { name: 'pincode', type: 'number', show: 'Pincode' },
@@ -161,6 +161,11 @@ export function SignUp({ func, show }) {
                 <input type="text" name="password" />
                 <input type="submit" />
             </form>
+            <Link href={'/test/forget'}>
+                <a>
+                    Forgot password
+                </a>
+            </Link>
             {
                 (next) ?
                     <SecondPage func={func} />
