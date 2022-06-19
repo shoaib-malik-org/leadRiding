@@ -9,6 +9,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const nodemailer = require('nodemailer')
 const mongodb = require('./mongodb')
+
 const fileUpload = require("express-fileupload");
 Router.use(fileUpload({
     createParentPath: true
@@ -154,53 +155,8 @@ const transport = nodemailer.createTransport({
         pass: process.env.GMAIL_PASS
     }
 })
-Router.post('/forget', (req, res) => {
-    req.on("data", async (body) => {
-        body = JSON.parse(body)
-        const p = await mongodb.find('vendors', body)
-        if (!(p.length > 0)) {
-            res.send(JSON.stringify(false))
-        } else {
-            tempOtp = getRandomInt(999999)
-            // var send = {
-            //     from: process.env.GMAIL_ACC,
-            //     to: p[0].email,
-            //     subject: "Lead Riding Verification Code",
-            //     text: "Your opt is " + tempOtp,
-            // }
-            // transport.sendMail(send, (err, info) => {
-            //     if (err) console.log(err)
-            //     else console.log(info)
-            // })
-            res.send(JSON.stringify(true))
-            otp();
-        }
-    })
 
-})
-// destroying the otp generated
-function otp() {
-    console.log(tempOtp)
-    setTimeout(() => {
-        tempOtp = 'expired'
-        console.log(tempOtp)
-    }, 360000);
-}
-// changing the password
-Router.post('/optVerification', (req, res) => {
-    req.on('data', (body) => {
-        body = JSON.parse(body);
-        const otp = body.otp
-        console.log(otp)
-        if (tempOtp === 'expired') {
-            res.send(JSON.stringify('expired'))
-        } else if (otp === tempOtp) {
-            res.send(JSON.stringify(true))
-        } else {
-            res.send(JSON.stringify(false))
-        }
-    })
-})
+
 Router.post('/password/change', (req, res) => {
 
 })

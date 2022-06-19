@@ -11,6 +11,7 @@
   "dependencies": {
     "aos": "^2.3.4",
     "cookies-next": "^2.0.4",
+    "firebase": "^9.8.3",
     "mojoauth-web-sdk": "^1.1.7",
     "next": "12.1.6",
     "random-id": "^1.0.4",

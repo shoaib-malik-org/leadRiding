@@ -14,7 +14,7 @@ export function VendorNav({ className }) {
                         <a>
                             <p className={`text-secondary row`}>
                                 <div className="col-2">
-                                    <i class="fa-solid fa-user"></i>
+                                    <i className="fa-solid fa-user"></i>
                                 </div>
                                 <div className="col">
                                     View Profile

@@ -33,10 +33,10 @@ export function Sider() {
                 </button>
             </div>
             <span className="my-5 d-flex justify-content-center">
-                <i class="fa-brands fa-facebook-square fa-lg pointer" style={{ color: 'rgb(66,103,178)' }}></i>
-                <i class="fa-brands fa-twitter ms-3 fa-lg pointer" style={{ color: '#00acee' }}></i>
-                <i class="fa-brands fa-instagram ms-3 fa-lg pointer" style={{ color: 'red' }}></i>
-                <i class="fa-brands fa-pinterest ms-3 fa-lg pointer" style={{ color: '#E60023' }}></i>
+                <i className="fa-brands fa-facebook-square fa-lg pointer" style={{ color: 'rgb(66,103,178)' }}></i>
+                <i className="fa-brands fa-twitter ms-3 fa-lg pointer" style={{ color: '#00acee' }}></i>
+                <i className="fa-brands fa-instagram ms-3 fa-lg pointer" style={{ color: 'red' }}></i>
+                <i className="fa-brands fa-pinterest ms-3 fa-lg pointer" style={{ color: '#E60023' }}></i>
             </span>
             <p className="mb-0 mt-3 text-center">
                 More Listing by

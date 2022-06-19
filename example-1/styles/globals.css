@@ -42,6 +42,9 @@ a {
   color: white;
   transition: .2s;
 }
+.btn-outline-dorange{
+  color: black;
+}
 
 .btn-lgreen,
 .btn-lgreen:hover {
