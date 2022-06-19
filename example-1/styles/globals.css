@@ -32,6 +32,16 @@ a {
   background-color: orange;
   color: white;
 }
+.btn-dorange:hover,.btn-dorange{
+  border: 1px solid #FB4800 !important;
+  background-color: #FB4800 !important;
+  color: white !important;
+}
+.btn-outline-dorange:hover{
+  background-color: #FB4800;
+  color: white;
+  transition: .2s;
+}
 
 .btn-lgreen,
 .btn-lgreen:hover {
