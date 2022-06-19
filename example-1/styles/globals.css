@@ -32,6 +32,9 @@ a {
   background-color: orange;
   color: white;
 }
+.text-dorange{
+  color: #FB4800;
+}
 .btn-dorange:hover,.btn-dorange{
   border: 1px solid #FB4800 !important;
   background-color: #FB4800 !important;

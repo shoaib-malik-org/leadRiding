@@ -1,4 +1,7 @@
-
+import { Navbar } from "../../components/common/navbar";
+import { createContext } from 'react';
+import { VendorNav } from "../../components/vendor/vendorNav";
+import { AccSetting } from "../../components/vendor/setting";
 
 
 
@@ -21,16 +24,19 @@ export async function getServerSideProps({ req }) {
     }
 }
 
-export default function Auth({ res }) {
-    console.log(res)
+
+
+
+
+export const isAuthenticated = createContext();
+export default function Setting({ res }) {
     return (
         <>
-            {
-                (res) ?
-                    <h1>you are authenticated</h1>
-                    :
-                    <h1>you are not authenticated</h1>
-            }
+            <isAuthenticated.Provider value={res}>
+                <Navbar />
+            </isAuthenticated.Provider>
+            <VendorNav />
+            <AccSetting />
         </>
     )
 }

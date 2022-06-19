@@ -139,7 +139,7 @@ Router.get('/logout', (req, res) => {
 
 
 Router.get('/Auth', (req, res) => {
-    res.redirect('http://localhost:3000/test/auth')
+    res.redirect('http://localhost:3000')
 })
 // sending that is vendor authenticated or not
 Router.get('/check', (req, res) => {
