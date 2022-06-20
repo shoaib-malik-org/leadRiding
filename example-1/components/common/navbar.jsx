@@ -81,6 +81,7 @@ export function Navbar() {
                 console.log(window.confirmationResult);
                 // ...
             }).catch((error) => {
+                console.log(error)
                 grecaptcha.reset(window.recaptchaWidgetId);
                 console.log("Error; SMS not sent");
                 // ...

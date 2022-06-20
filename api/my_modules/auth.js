@@ -142,6 +142,7 @@ Router.get('/Auth', (req, res) => {
 })
 // sending that is vendor authenticated or not
 Router.get('/check', (req, res) => {
+    console.log('ok')
     res.send(JSON.stringify(req.isAuthenticated()));
 })
 

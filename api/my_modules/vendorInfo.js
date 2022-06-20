@@ -24,8 +24,8 @@ Router.route('/')
     })
     .post(fileUploading, (req, res) => {
         console.log(req.body)
-        // console.log(req.files)
-
+        
+        
         res.send(JSON.stringify("ok"))
     })
     .put((req, res) => {
