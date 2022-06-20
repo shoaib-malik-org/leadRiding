@@ -76,8 +76,8 @@ function Left() {
 
 function Value(value) {
     return (
-        <div className="container-fluid ps-0 py-2">
-            <div className="row border-bottom py-2" key={value.name}>
+        <div className="container-fluid ps-0 py-2" key={value.name}>
+            <div className="row border-bottom py-2">
                 <div className="col">
                     {value.name}:
                 </div>

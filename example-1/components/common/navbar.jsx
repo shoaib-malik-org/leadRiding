@@ -65,6 +65,10 @@ export function Navbar() {
     }
     async function submit(e) {
         e.preventDefault();
+        console.log(signUp)
+        const p = await fetch('http://localhost:8000/auth/register', { method: 'post', body: JSON.stringify(signUp) })
+        const res = await p.json();
+        console.log(res)
         const auth = getAuth();
         console.log(formData)
         const phoneNumber = "+91" + signUp.number;
@@ -101,6 +105,7 @@ export function Navbar() {
 
     function submitOtp(e) {
         e.preventDefault();
+        console.log(signUp)
         confirmationResult.confirm(formData.otp).then(async (result) => {
             // User signed in successfully.
             const user = result.user;
@@ -182,19 +187,19 @@ export function Navbar() {
                                                                             </div>
                                                                             <div className="col-12">
                                                                                 <div className="form-floating mt-2">
-                                                                                    <input onChange={storeData} type={'text'} className="form-control text-sans" id="floatingInputname" placeholder="name" />
+                                                                                    <input name='username' onChange={storeData} type={'text'} className="form-control text-sans" id="floatingInputname" placeholder="name" />
                                                                                     <label htmlFor="floatingInput">Name:</label>
                                                                                 </div>
                                                                             </div>
                                                                             <div className="col-12">
                                                                                 <div className="form-floating mt-2">
-                                                                                    <input onChange={storeData} type={'text'} className="form-control text-sans" id="floatingInputphone" placeholder="phone" />
+                                                                                    <input name='number' onChange={storeData} type={'text'} className="form-control text-sans" id="floatingInputphone" placeholder="phone" />
                                                                                     <label htmlFor="floatingInput">Phone:</label>
                                                                                 </div>
                                                                             </div>
                                                                             <div className="col-12">
                                                                                 <div className="form-floating mt-2">
-                                                                                    <input onChange={storeData} type={'password'} className="form-control text-sans" id="floatingInputpassword" placeholder="password" />
+                                                                                    <input name='password' onChange={storeData} type={'password'} className="form-control text-sans" id="floatingInputpassword" placeholder="password" />
                                                                                     <label htmlFor="floatingInput">Password:</label>
                                                                                 </div>
                                                                             </div>

@@ -127,7 +127,6 @@ Router.post('/register', (req, res) => {
                 else res.send(JSON.stringify('register successful'))
             })
         })
-        mongodb.insert('vendors', body)
     })
 })
 
@@ -166,8 +165,6 @@ Router.get('/', async (req, res) => {
 })
 
 // for generating random opt
-function getRandomInt() {
-    return Math.floor(100000+Math.random() * 900000);
-}
+
 
 module.exports = Router
