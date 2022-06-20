@@ -12,9 +12,12 @@ const privateinfo = [
     { show: "Email", name: 'email' },
     { show: "Number", name: 'number' },
     { show: "Gender", name: 'gender' },
-    { show: "Date of birth", name: 'DOB' },
-]
-const Photos = [
+    { show: "Date of birth", name: 'DOB', type:"date" },
+    { show: "Adhaar number", name: 'adhaarNo' },
+    { show: "Pan number", name: 'panNO' },
+    { show: "Adhaar photo", type:'file', name: 'adhaarPhoto' },
+    { show: "Pan photo", type:'file', name: 'panPhoto' },
+    { show: "Gst number", name: 'gstNO' },
 
 ]
 
@@ -23,12 +26,21 @@ const Photos = [
 
 export function EditProf() {
     var [vendorData, setVendorData] = useState({})
+    var [files, setfiles] = useState([])
     function takeInput(e) {
         const value = e.target.value;
         const name = e.target.name;
         setVendorData((prev) => {
             return { ...prev, [name]: value }
         })
+    }
+    function fileInput(e){
+        
+        // var arr = [];
+        // for (var i = 0; i < e.target.files.length; i++) {
+        //     arr.push(e.target.files[i])
+        // }
+        // setfiles(arr);
     }
     function submit(e) {
         e.preventDefault();
@@ -51,8 +63,10 @@ export function EditProf() {
 
                                     publicinfo.map((value) => {
                                         var type = 'text';
+                                        var change = takeInput
                                         if (value.type !== undefined) {
                                             type = value.type
+                                            change
                                         }
                                         return (
                                             <div className="container-fluid ps-0 py-2" key={value.show}>
@@ -61,7 +75,7 @@ export function EditProf() {
                                                         {value.show}:
                                                     </div>
                                                     <div className="col">
-                                                        <input name={value.name} onChange={takeInput} type={type} defaultValue={value.value} className={"form-control"} />
+                                                        <input name={value.name} onChange={change} type={type} defaultValue={value.value} className={"form-control"} />
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,6 +88,28 @@ export function EditProf() {
                                     <h4 className="text-sans pt-3">
                                         Personel Info
                                     </h4>
+                                    {
+                                        privateinfo.map(value => {
+                                            var type = 'text';
+                                            var change = takeInput
+                                            if (value.type !== undefined) {
+                                                type = value.type
+                                                change = fileInput
+                                            }
+                                            return (
+                                                <div className="container-fluid ps-0 py-2" key={value.show}>
+                                                    <div className="row border-bottom py-2">
+                                                        <div className="col">
+                                                            {value.show}:
+                                                        </div>
+                                                        <div className="col">
+                                                            <input name={value.name} onChange={change} type={type} defaultValue={value.value} className={"form-control"} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>
