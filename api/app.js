@@ -4,6 +4,7 @@ const app = express();
 
 // my modules
 const auth = require('./my_modules/auth')
+const vendorsInfo = require('./my_modules/vendorInfo')
 
 
 app.listen(8000,(err)=>{
@@ -12,3 +13,4 @@ app.listen(8000,(err)=>{
 
 
 app.use('/auth',auth)
+app.use("/vendorInfo",vendorsInfo)

@@ -1,13 +1,21 @@
 
 
 
-const info = [
+const publicinfo = [
     { name: "name", value: 'shoaib' },
     { name: "About Me", value: 'shoaib' },
-    { name: "My Website", value: 'http://localhost:8000/' },
-    { name: "name", value: 'shoaib' },
-    { name: "name", value: 'shoaib' },
-    { name: "name", value: 'shoaib' },
+    { name: "My Website", value: <a href="https://www.youtube.com/" target="_blank">https://www.youtube.com/</a> },
+    { name: 'address', value: 'current' },
+    { name: "Profile Photo", value: <input type="file" className="form-control" /> },
+]
+const privateinfo = [
+    { name: "Email", value: 'someh' },
+    { name: "Number", value: '23' },
+    { name: "Gender", value: 'shoaib' },
+    { name: "Date of birth", value: 'shoaib' },
+]
+const Photos = [
+    
 ]
 
 
@@ -16,18 +24,18 @@ const info = [
 
 export function AccSetting() {
     return (
-        <div className="container">
+        <div className="container mb-5">
             <h1 className="mt-3 text-dorange">
                 Account Setting
             </h1>
             <div className="container-fluid border mt-3">
-                <h4 className="text-sans mt-1">
-                    Profile Info
-                </h4>
-                <div className="row mt-4">
-                    <Left />
-                    <div className="col">
 
+                <div className="row">
+                    <div className="col-6">
+                        <Left />
+                    </div>
+                    <div className="col">
+                        <Right />
                     </div>
                 </div>
             </div>
@@ -35,22 +43,47 @@ export function AccSetting() {
     )
 }
 
+function Right() {
+    return (
+        <div className="col-12">
+            <h4 className="text-sans pt-3">
+                Product or Service Photos
+            </h4>
+        </div>
+    )
+}
+
 function Left() {
     return (
-        <div className="col">
-            {info.map(Value)}
-        </div>
+        <>
+            <div className="col-12 border-end">
+                <h4 className="text-sans pt-3">
+                    Profile Info
+                </h4>
+                {publicinfo.map(Value)}
+            </div>
+            <div>
+                <div className="col-12 border-end">
+                    <h4 className="text-sans pt-3">
+                        Personel Info
+                    </h4>
+                    {privateinfo.map(Value)}
+                </div>
+            </div>
+        </>
     )
 }
 
 function Value(value) {
     return (
-        <div className="row border-bottom py-2" key={value.name}>
-            <div className="col">
-                {value.name}:
-            </div>
-            <div className="col">
-                {value.value}
+        <div className="container-fluid ps-0 py-2">
+            <div className="row border-bottom py-2" key={value.name}>
+                <div className="col">
+                    {value.name}:
+                </div>
+                <div className="col">
+                    {value.value}
+                </div>
             </div>
         </div>
     )

@@ -8,7 +8,6 @@ import { getAuth, signInWithPhoneNumber } from "firebase/auth";
 import { firebase } from '../auth/firebase'
 import { RecaptchaVerifier } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
-import { isAuthenticated } from '../../pages';
 
 
 
@@ -31,10 +30,28 @@ const arr = [
 
 
 export function Navbar() {
-    // using context api
-    const isAuth = useContext(isAuthenticated)
+    // checking the person is authenticated or not
+    var [isAuth, setIsAuth] = useState(false)
+    useEffect(() => {
+        checkIsAuthenticatedOrnot()
+        async function checkIsAuthenticatedOrnot() {
+            const p = await fetch('http://localhost:8000/auth/check', {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "http://localhost:3000/",
+                },
+                credentials: "include"
+            })
+            const res = await p.json();
+            setIsAuth(res)
+            console.log(res)
+        }
+    }, [])
 
-    var [data, setData] = useState({})
+
+
+    var [signUp, setData] = useState({})
     var [isOtpVerified, setOtpVerified] = useState({ tru: false, fal: false })
     function storeData(e) {
         const value = e.target.value;
@@ -50,7 +67,7 @@ export function Navbar() {
         e.preventDefault();
         const auth = getAuth();
         console.log(formData)
-        const phoneNumber = "+91" + data.number;
+        const phoneNumber = "+91" + signUp.number;
         const appVerifier = window.recaptchaVerifier;
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
             .then((confirmationResult) => {
@@ -88,7 +105,7 @@ export function Navbar() {
             // User signed in successfully.
             const user = result.user;
 
-            const p = await fetch('http://localhost:8000/auth/register', { method: 'post', body: JSON.stringify(data) })
+            const p = await fetch('http://localhost:8000/auth/register', { method: 'post', body: JSON.stringify(signUp) })
             const res = await p.json();
             console.log(res)
             // console.log(user)
