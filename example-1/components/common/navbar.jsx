@@ -8,8 +8,8 @@ import { getAuth, signInWithPhoneNumber } from "firebase/auth";
 import { firebase } from '../auth/firebase'
 import { RecaptchaVerifier } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
-
-
+import { store } from '../../redux/store'
+import { vendorInfo } from '../../redux/reducers/vendor';
 
 
 const arr = [
@@ -44,13 +44,10 @@ export function Navbar() {
                 credentials: "include"
             })
             const res = await p.json();
-            setIsAuth(res)
-            console.log(res)
+            setIsAuth(res.isAuthenticated)
+            store.dispatch(vendorInfo({ user: res.user }))
         }
     }, [])
-
-
-
     var [signUp, setData] = useState({})
     var [isOtpVerified, setOtpVerified] = useState({ tru: false, fal: false })
     function storeData(e) {
@@ -63,12 +60,9 @@ export function Navbar() {
             }
         })
     }
-    async function submit(e) {
+    function submit(e) {
         e.preventDefault();
-        console.log(signUp)
-        const p = await fetch('http://localhost:8000/auth/register', { method: 'post', body: JSON.stringify(signUp) })
-        const res = await p.json();
-        console.log(res)
+
         const auth = getAuth();
         console.log(formData)
         const phoneNumber = "+91" + signUp.number;
@@ -119,7 +113,6 @@ export function Navbar() {
             setOtpVerified({ tru: true, fal: false })
             // setOtpVerified({ tru: true, fal: false })
         }).catch((error) => {
-
             setOtpVerified({ tru: false, fal: true })
             // console.log(error)
             // User couldn't sign in (bad verification code?)

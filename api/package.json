@@ -93,6 +93,7 @@
     "saslprep": "^1.0.3",
     "semver": "^7.3.5",
     "set-blocking": "^2.0.0",
+    "short-uuid": "^4.2.0",
     "signal-exit": "^3.0.7",
     "smart-buffer": "^4.2.0",
     "socks": "^2.6.2",

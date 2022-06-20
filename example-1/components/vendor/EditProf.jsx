@@ -1,12 +1,17 @@
 import { useState } from "react"
+import { store } from "../../redux/store"
 
 
 const publicinfo = [
     { show: "name", name: 'name' },
     { show: "About Me", name: 'about' },
-    { show: "My Website", value: "", name: 'websitelink' },
+    { show: "My Website", name: 'websitelink' },
     { show: 'address', name: 'address', type: 'button' },
     { show: "Profile Photo", type: 'file', name: 'profilephoto' },
+    { show: "facebook page link", name: 'facebookLink' },
+    { show: "instagram page link", name: 'instragramLink' },
+    { show: "twitter page link", name: 'twitterLink' },
+    { show: "pinterest page link", name: 'pinterestLink' },
 ]
 const privateinfo = [
     { show: "Email", name: 'email' },
@@ -20,9 +25,8 @@ const privateinfo = [
     { show: "Gst number", name: 'gstNo' },
 ]
 
-
-export function EditProf() {
-    var [vendorData, setVendorData] = useState({})
+export function EditProf({ data }) {
+    var [vendorData, setVendorData] = useState({ gender: 'male' })
     var [files, setfiles] = useState({})
     function getLocation() {
         if (navigator.geolocation) {
@@ -76,6 +80,9 @@ export function EditProf() {
         form.append('panNo', vendorData.panNo)
         form.append('gstNo', vendorData.gstNo)
         const p = await fetch('http://localhost:8000/vendorInfo', {
+            headers: {
+                id: store.getState().vendor.user.id
+            },
             method: "POST",
             body: form
         })
@@ -91,7 +98,7 @@ export function EditProf() {
                 <form onSubmit={submit}>
                     <div className="row">
                         <div className="col-6">
-                            <div className="col-12 border-end">
+                            <div className="col-12 border-end h-100">
                                 <h4 className="text-sans pt-3">
                                     Profile Info
                                 </h4>
@@ -102,6 +109,10 @@ export function EditProf() {
                                         var change = takeInput
                                         var cls = 'form-control'
                                         var click = () => { }
+                                        var isRequired = false;
+                                        if (value.name === 'name') {
+                                            isRequired = true;
+                                        }
                                         if (value.type === 'button') {
                                             type = value.type
                                             cls = 'btn btn-dorange w-100'
@@ -110,9 +121,7 @@ export function EditProf() {
                                         }
                                         else if (value.type !== undefined) {
                                             type = value.type
-
                                             change = fileInput
-
                                         }
                                         return (
                                             <div className="container-fluid ps-0 py-2" key={value.show}>
@@ -121,29 +130,41 @@ export function EditProf() {
                                                         {value.show}:
                                                     </div>
                                                     <div className="col">
-                                                        <input onClick={click} name={value.name} onChange={change} type={type} defaultValue={value.value} className={cls} />
+                                                        <input onClick={click} name={value.name} onChange={change} type={type} defaultValue={value.value} className={cls} required={isRequired} />
                                                     </div>
                                                 </div>
                                             </div>
                                         )
                                     })
                                 }
+                                {/* <div className="container-fluid ps-0 py-2">
+                                    <div className="row border-bottom py-2">
+                                        <div className="col">
+                                            select multiple files for your profile:
+                                        </div>
+                                        <div className="col">
+                                            <input name={'others'} type={'file'} className={'form-control'} multiple />
+                                        </div>
+                                    </div>
+                                </div> */}
                             </div>
-                            <div>
-                                <div className="col-12 border-end">
-                                    <h4 className="text-sans pt-3">
-                                        Personel Info
-                                    </h4>
-                                    {
-                                        privateinfo.map(value => {
-                                            var type = 'text';
-                                            var change = takeInput
-                                            if (value.type !== undefined) {
-                                                type = value.type
-                                                if (value.type !== 'date') {
-                                                    change = fileInput
-                                                }
+                        </div>
+                        <div className="col px-2">
+                            <div className="col-12">
+                                <h4 className="text-sans pt-3">
+                                    Personel Info
+                                </h4>
+                                {
+                                    privateinfo.map(value => {
+                                        var type = 'text';
+                                        var change = takeInput
+                                        if (value.type !== undefined) {
+                                            type = value.type
+                                            if (value.type !== 'date') {
+                                                change = fileInput
                                             }
+                                        }
+                                        if (value.name === 'gender') {
                                             return (
                                                 <div className="container-fluid ps-0 py-2" key={value.show}>
                                                     <div className="row border-bottom py-2">
@@ -151,36 +172,42 @@ export function EditProf() {
                                                             {value.show}:
                                                         </div>
                                                         <div className="col">
-                                                            <input name={value.name} onChange={change} type={type} defaultValue={value.value} className={"form-control"} />
+                                                            <select name={value.name} onChange={change} id="" className="form-select">
+                                                                <option value="male">Male</option>
+                                                                <option value="female">Female</option>
+                                                                <option value="transgender">Transgender</option>
+                                                            </select>
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             )
-                                        })
-                                    }
-                                </div>
+                                        }
+                                        return (
+                                            <div className="container-fluid ps-0 py-2" key={value.show}>
+                                                <div className="row border-bottom py-2">
+                                                    <div className="col">
+                                                        {value.show}:
+                                                    </div>
+                                                    <div className="col">
+                                                        <input name={value.name} onChange={change} type={type} defaultValue={value.value} className={"form-control"} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <div className="d-flex justify-content-end mb-3">
+                                <button className="btn btn-dorange  col-4">Save</button>
                             </div>
                         </div>
-                        <div className="col">
-                            <Right inputTaker={takeInput} />
-                        </div>
+
                     </div>
-                    <div className="d-flex justify-content-end mb-3">
-                        <button className="btn btn-dorange col-2">Save</button>
-                    </div>
+
                 </form>
             </div>
         </div>
 
-    )
-}
-
-function Right() {
-    return (
-        <div className="col-12">
-            <h4 className="text-sans pt-3">
-                Product or Service Photos
-            </h4>
-        </div>
     )
 }

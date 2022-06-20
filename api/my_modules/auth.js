@@ -2,13 +2,14 @@ const express = require('express');
 const Router = express.Router();
 const session = require('express-session');
 const passport = require('passport');
-const bcrypt = require('bcrypt');
 const ObjectID = require('mongodb').ObjectId;
+const bcrypt = require('bcrypt');
 const { MongdoClient, MongoClient } = require('mongodb');
 const dotenv = require('dotenv')
 dotenv.config()
 const nodemailer = require('nodemailer')
 const mongodb = require('./mongodb')
+const short = require('short-uuid');
 
 const fileUpload = require("express-fileupload");
 Router.use(fileUpload({
@@ -114,19 +115,24 @@ Router.get("/login", (req, res) => {
 
 Router.post('/login', passport.authenticate("local", { failureRedirect: '/auth/login', successRedirect: '/auth/Auth' }));
 
+
 Router.post('/register', (req, res) => {
     req.on('data', (body) => {
         body = JSON.parse(body)
+        const id = short.generate()
         bcrypt.hash(body.password, 10, async (err, hash) => {
             const user = {
+                id,
                 username: body.username,
-                hash: hash
+                hash: hash,
+                number: body.number
             }
             dbo.collection('vendors_login').insertOne(user, async (err, result) => {
                 if (err) res.send(JSON.stringify('register unsuccessful'))
                 else res.send(JSON.stringify('register successful'))
             })
         })
+        mongodb.insert('vendors', { id })
     })
 })
 
@@ -142,8 +148,8 @@ Router.get('/Auth', (req, res) => {
 })
 // sending that is vendor authenticated or not
 Router.get('/check', (req, res) => {
-    console.log('ok')
-    res.send(JSON.stringify(req.isAuthenticated()));
+    req.user.hash = ''
+    res.send(JSON.stringify({ isAuthenticated: req.isAuthenticated(), user: req.user }));
 })
 
 // sending and opt to the vendor that forgot his password

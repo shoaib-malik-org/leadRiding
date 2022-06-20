@@ -16,6 +16,13 @@ export function VendorNav() {
                         </button>
                     </a>
                 </Link>
+                <Link href="/vendor/selectCategory">
+                    <a>
+                        <button className="btn">
+                            Select Category
+                        </button>
+                    </a>
+                </Link>
                 <Link href="#">
                     <a>
                         <button className="btn">
