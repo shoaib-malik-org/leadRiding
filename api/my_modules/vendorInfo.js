@@ -79,14 +79,24 @@ Router.route('/')
     })
 
 Router.post('/categories', (req, res) => {
-    res.send(JSON.stringify("ok"))
+    req.on('data', async (body) => {
+        body = JSON.parse(body);
+        const [data] = await mongodb.find('vendors', { id: req.headers.id })
+        if (data) {
+            const p = await mongodb.upd('vendors', { id: req.headers.id }, { category: body })
+            console.log(p)
+            res.send(JSON.stringify("data updated successful"))
+        } else {
+            res.send(JSON.stringify('you dont have key please contact developers'))
+        }
+    })
 })
 
 Router.get('/single', async (req, res) => {
     if (req.isAuthenticated()) {
         const [data] = await mongodb.find('vendors', { id: req.user.id })
         res.send(JSON.stringify(data))
-    }else{
+    } else {
         res.send(JSON.stringify('ok'))
     }
 })

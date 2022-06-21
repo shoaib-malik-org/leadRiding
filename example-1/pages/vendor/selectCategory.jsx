@@ -3,14 +3,31 @@ import { Navbar } from '../../components/common/navbar'
 import { VendorNav } from '../../components/vendor/vendorNav'
 import { categories } from './allCategory'
 
+export async function getServerSideProps({ req }) {
+    const p = await fetch('http://localhost:8000/vendorInfo/single', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000/",
+            cookie: req.headers.cookie
+        },
+        credentials: "include"
+    })
+    const data = await p.json();
+    return {
+        props: {
+            data
+        }
+    }
+}
 
 
-export default function SelectCate() {
+export default function SelectCate({ data }) {
     return (
         <>
             <Navbar />
             <VendorNav />
-            <ChooseCate />
+            <ChooseCate data={data} />
         </>
     )
 }
@@ -20,7 +37,7 @@ var ssubcategoryData = []
 var tsubcategoryData = []
 
 
-function ChooseCate() {
+function ChooseCate({ data }) {
     var [firstChk, setFirstChk] = useState(false)
     var [firstList, setFirstList] = useState([])
     var [secChk, setSecChk] = useState(false)
@@ -82,7 +99,6 @@ function ChooseCate() {
             const index = fsubcategoryData.findIndex((value) => value.id === name)
             fsubcategoryData.splice(index, 1)
         }
-        console.log(fsubcategoryData)
     }
     function sTakeInput(e) {
         const value = e.target.checked;
@@ -98,7 +114,6 @@ function ChooseCate() {
             const index = ssubcategoryData.findIndex((value) => value.id === name)
             ssubcategoryData.splice(index, 1)
         }
-        console.log(ssubcategoryData)
     }
     function tTakeInput(e) {
         const value = e.target.checked;
@@ -114,13 +129,37 @@ function ChooseCate() {
             const index = tsubcategoryData.findIndex((value) => value.id === name)
             tsubcategoryData.splice(index, 1)
         }
-        console.log(tsubcategoryData)
     }
-    function submit(e) {
+    async function submit(e) {
         e.preventDefault();
-        const [first] = categories.filter(value => value.id === categoryData.firstCate)
-        console.log(len(fsubcategoryData, first.subcategories))
-
+        const category = []
+        if (categoryData !== undefined) {
+            if (categoryData.firstCate !== undefined) {
+                const [first] = categories.filter(value => value.id === categoryData.firstCate)
+                first.subcategories = len(fsubcategoryData, first.subcategories)
+                category.push(first)
+            }
+            if (categoryData.secCate !== undefined) {
+                const [sec] = categories.filter(value => value.id === categoryData.secCate)
+                sec.subcategories = len(ssubcategoryData, sec.subcategories)
+                category.push(sec)
+            }
+            if (categoryData.thirdCate !== undefined) {
+                const [third] = categories.filter(value => value.id === categoryData.thirdCate)
+                third.subcategories = len(tsubcategoryData, third.subcategories)
+                category.push(third)
+            }
+        }
+        data.id
+        const p = await fetch('http://localhost:8000/vendorInfo/categories', {
+            headers: {
+                id: data.id
+            },
+            method: "POST",
+            body: JSON.stringify(category)
+        })
+        const res = await p.json();
+        console.log(res)
     }
     return (
         <div className='container'>
@@ -140,9 +179,14 @@ function ChooseCate() {
                         {
                             (firstChk) &&
                             firstList.map(value => {
+                                var defChk = false;
+                                const check = fsubcategoryData.filter(store => value.id === store.id)
+                                if (check.length > 0) {
+                                    defChk = true;
+                                }
                                 return (
                                     <div key={getRandomInt()} className={'ms-4'}>
-                                        <input type="checkbox" name={value.id} onChange={fTakeInput} />
+                                        <input type="checkbox" name={value.id} onChange={fTakeInput} defaultChecked={defChk} />
                                         <label htmlFor="" className='ms-2'>{value.name}</label>
                                     </div>
                                 )
@@ -161,10 +205,14 @@ function ChooseCate() {
                         {
                             (secChk) &&
                             secList.map(value => {
-
+                                var defChk = false;
+                                const check = ssubcategoryData.filter(store => value.id === store.id)
+                                if (check.length > 0) {
+                                    defChk = true;
+                                }
                                 return (
                                     <div key={getRandomInt()} className={'ms-4'}>
-                                        <input type="checkbox" name={value.id} onChange={sTakeInput} />
+                                        <input type="checkbox" name={value.id} onChange={sTakeInput} defaultChecked={defChk} />
                                         <label htmlFor="" className='ms-2'>{value.name}</label>
                                     </div>
                                 )
@@ -183,9 +231,14 @@ function ChooseCate() {
                         {
                             (thirdChk) &&
                             thirdList.map(value => {
+                                var defChk = false;
+                                const check = tsubcategoryData.filter(store => value.id === store.id)
+                                if (check.length > 0) {
+                                    defChk = true;
+                                }
                                 return (
                                     <div key={getRandomInt()} className={'ms-4'}>
-                                        <input type="checkbox" name={value.id} onChange={tTakeInput} />
+                                        <input type="checkbox" name={value.id} onChange={tTakeInput} defaultChecked={defChk} />
                                         <label htmlFor="" className='ms-2'>{value.name}</label>
                                     </div>
                                 )
