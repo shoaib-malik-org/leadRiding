@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Navbar } from '../../components/common/navbar'
 import { VendorNav } from '../../components/vendor/vendorNav'
-import { categories } from './allCategory'
 
 export async function getServerSideProps({ req }) {
     const p = await fetch('http://localhost:8000/vendorInfo/single', {
@@ -14,9 +13,11 @@ export async function getServerSideProps({ req }) {
         credentials: "include"
     })
     const data = await p.json();
+    const p2 = await fetch('http://localhost:8000/category')
+    const categories = await p2.json();
     return {
         props: {
-            data
+            categories,data
         }
     }
 }
@@ -37,7 +38,8 @@ var ssubcategoryData = []
 var tsubcategoryData = []
 
 
-function ChooseCate({ data }) {
+function ChooseCate({ data, categories }) {
+    console.log(categories)
     var [firstChk, setFirstChk] = useState(false)
     var [firstList, setFirstList] = useState([])
     var [secChk, setSecChk] = useState(false)

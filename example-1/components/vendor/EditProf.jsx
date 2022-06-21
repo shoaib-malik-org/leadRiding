@@ -9,7 +9,7 @@ const publicinfo = [
     { show: 'address', name: 'address', type: 'button' },
     { show: "Profile Photo", type: 'file', name: 'profilephoto' },
     { show: "facebook page link", name: 'facebookLink' },
-    { show: "instagram page link", name: 'instragramLink' },
+    { show: "instagram page link", name: 'instagramLink' },
     { show: "twitter page link", name: 'twitterLink' },
     { show: "pinterest page link", name: 'pinterestLink' },
 ]
@@ -26,7 +26,15 @@ const privateinfo = [
 ]
 
 export function EditProf({ data }) {
-    var [vendorData, setVendorData] = useState({ gender: 'male' })
+    publicinfo[0].value = data.name
+    publicinfo[1].value = data.about
+    publicinfo[2].value = data.websiteurl
+    publicinfo[5].value = data.facebookLink
+    publicinfo[6].value = data.instagramLink
+    publicinfo[7].value = data.twitterLink
+    publicinfo[8].value = data.pinterestLink
+    privateinfo[1].value = data.number
+    var [vendorData, setVendorData] = useState({ ...data })
     var [files, setfiles] = useState({})
     function getLocation() {
         if (navigator.geolocation) {
@@ -73,12 +81,15 @@ export function EditProf({ data }) {
         form.append('latitude', vendorData.latitude)
         form.append('longitude', vendorData.longitude)
         form.append('email', vendorData.email)
-        form.append('number', vendorData.number)
         form.append('gender', vendorData.dender)
         form.append('DOB', vendorData.DOB)
         form.append('adhaarNo', vendorData.adhaarNo)
         form.append('panNo', vendorData.panNo)
         form.append('gstNo', vendorData.gstNo)
+        form.append('facebookLink', vendorData.facebookLink)
+        form.append("twitterLink", vendorData.twitterLink)
+        form.append('instagramLink', vendorData.instagramLink)
+        form.append("pinterestLink", vendorData.pinterestLink)
         const p = await fetch('http://localhost:8000/vendorInfo', {
             headers: {
                 id: store.getState().vendor.user.id
@@ -121,8 +132,11 @@ export function EditProf({ data }) {
                                         }
                                         else if (value.type !== undefined) {
                                             type = value.type
-                                            change = fileInput
+                                            if (value.type === 'file') {
+                                                change = fileInput
+                                            }
                                         }
+
                                         return (
                                             <div className="container-fluid ps-0 py-2" key={value.show}>
                                                 <div className="row border-bottom py-2">
@@ -164,6 +178,22 @@ export function EditProf({ data }) {
                                                 change = fileInput
                                             }
                                         }
+                                        if (value.name === 'number') {
+                                            return (
+                                                <div className="container-fluid ps-0 py-2" key={value.show}>
+                                                    <div className="row border-bottom py-2">
+                                                        <div className="col">
+                                                            {value.show}:
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className={'form-control'}>
+                                                                {value.value}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
                                         if (value.name === 'gender') {
                                             return (
                                                 <div className="container-fluid ps-0 py-2" key={value.show}>
@@ -173,6 +203,7 @@ export function EditProf({ data }) {
                                                         </div>
                                                         <div className="col">
                                                             <select name={value.name} onChange={change} id="" className="form-select">
+                                                                <option value="none">Select Gender</option>
                                                                 <option value="male">Male</option>
                                                                 <option value="female">Female</option>
                                                                 <option value="transgender">Transgender</option>

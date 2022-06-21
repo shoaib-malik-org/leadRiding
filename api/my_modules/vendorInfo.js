@@ -66,16 +66,13 @@ Router.route('/')
         req.body.id = req.headers.id;
         const [data] = await mongodb.find('vendors', { id: req.headers.id })
         if (data) {
+            console.log(req.body)
             const p = await mongodb.upd('vendors', { id: req.headers.id }, req.body)
             console.log(p)
             res.send(JSON.stringify("data updated successful"))
         } else {
             res.send(JSON.stringify('you dont have key please contact developers'))
         }
-
-    })
-    .put((req, res) => {
-        res.send(JSON.stringify("ok"))
     })
 
 Router.post('/categories', (req, res) => {
@@ -108,7 +105,9 @@ function fileUploading(req, res, next) {
         const profile = req.files.profilePhoto;
         if (profile !== undefined) {
             const srcs1 = req.body.name + "_" + profile.name;
-            req.body.profileUrl = "http://localhost:8000/vendor/image/" + srcs1;
+            req.body.imgs = {
+                profile: "http://localhost:8000/vendor/image/" + srcs1
+            }
             profile.mv('uploads/' + srcs1, () => {
                 console.log('file ' + srcs1 + ' has been uploaded successfully');
             })
@@ -117,7 +116,11 @@ function fileUploading(req, res, next) {
         const adhaar = req.files.adhaarPhoto;
         if (adhaar !== undefined) {
             const srcs2 = req.body.name + "_" + adhaar.name;
-            req.body.adhaarUrl = "http://localhost:8000/vendor/image/" + srcs2;
+            req.body.adhaar = {
+                no: req.body.adhaarNo,
+                src: "http://localhost:8000/vendor/image/" + srcs2,
+            }
+            delete req.body.adhaarNo
             adhaar.mv('uploads/' + srcs2, () => {
                 console.log('file ' + srcs2 + ' has been uploaded successfully');
             })
@@ -126,7 +129,11 @@ function fileUploading(req, res, next) {
         const pan = req.files.panPhoto;
         if (pan !== undefined) {
             const srcs3 = req.body.name + "_" + pan.name;
-            req.body.panUrl = "http://localhost:8000/vendor/image/" + srcs3;
+            req.body.panUrl = {
+                no: req.body.panNo,
+                src: "http://localhost:8000/vendor/image/" + srcs3,
+            }
+            delete req.body.panNo
             pan.mv('uploads/' + srcs3, () => {
                 console.log('file ' + srcs3 + ' has been uploaded successfully');
             })

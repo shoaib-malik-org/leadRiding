@@ -132,7 +132,7 @@ Router.post('/register', (req, res) => {
                 else res.send(JSON.stringify('register successful'))
             })
         })
-        mongodb.insert('vendors', { id })
+        mongodb.insert('vendors', { id, name: body.username, number: body.number })
     })
 })
 
@@ -148,7 +148,9 @@ Router.get('/Auth', (req, res) => {
 })
 // sending that is vendor authenticated or not
 Router.get('/check', (req, res) => {
-    req.user.hash = ''
+    if (req.user !== undefined) {
+        req.user.hash = ''
+    }
     res.send(JSON.stringify({ isAuthenticated: req.isAuthenticated(), user: req.user }));
 })
 

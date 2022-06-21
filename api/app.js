@@ -6,6 +6,7 @@ const app = express();
 const auth = require('./my_modules/auth')
 const vendorsInfo = require('./my_modules/vendorInfo')
 const listing = require('./my_modules/listing')
+const category = require('./my_modules/category')
 
 
 app.listen(8000,(err)=>{
@@ -16,3 +17,4 @@ app.listen(8000,(err)=>{
 app.use('/auth',auth)
 app.use("/vendorInfo",vendorsInfo)
 app.use('/listing',listing)
+app.use('/category',category)
