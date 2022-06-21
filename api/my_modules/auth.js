@@ -171,7 +171,5 @@ Router.get('/', async (req, res) => {
     res.send(JSON.stringify('i have nothing in auth'))
 })
 
-// for generating random opt
-
 
 module.exports = Router
